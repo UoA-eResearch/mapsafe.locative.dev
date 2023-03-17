@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Mapsafe | A Complete tool for Geospatial Data Sovereignty</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Creative Agency Bootstrap Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Airspace Template v1.0">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+
+
+	<!-- bootstrap.min css -->
+	<link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+	<!-- Ionic Icon Css -->
+	<link rel="stylesheet" href="plugins/Ionicons/css/ionicons.min.css">
+	<!-- animate.css -->
+	<link rel="stylesheet" href="plugins/animate-css/animate.css">
+	<!-- Magnify Popup -->
+	<link rel="stylesheet" href="plugins/magnific-popup/magnific-popup.css">
+	<!-- Slick CSS -->
+	<link rel="stylesheet" href="plugins/slick/slick.css">
+	<!-- Main Stylesheet -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- My code start here -->
+	<link rel="stylesheet" href="assets/css/ol.css" /> 
+	<!-- multistep libraries-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+  	<!-- 09-11-2021 save as pdf -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+	<script src="assets/js/multistep.js"></script>
+	<!-- <script src="js/newmultistep.js"></script> -->
+
+	<script src="assets/js/skel.min.js"></script>
+	<script src="assets/js/turf.min.js"></script>
+	<script src="assets/js/shpwrite.js"></script>
+	<script src="assets/js/ol.js"></script> 
+	<script src="assets/js/shp.min.js"></script>
+	<script src="assets/js/jszip.min.js"></script>
+	<script src="assets/js/FileSaver.js"></script>
+	<script src="assets/js/xyz.js"></script>
+	<script src="assets/js/proj4.js"></script>
+	<script src="assets/js/jquery.gifplayer.js"></script>
+	<script src="assets/js/dstool.js"></script>						<!-- Encryption and Decryption -->
+	<script src="assets/js/passphrase.js"></script> 				<!-- Generate passphrase for encryption -->
+	<script src="assets/js/validation.js"></script> 				<!-- For validation, if layer or document -->
+
+	<!-- Minting via front end-->
+	<!-- Script loaded in the end of the page -->
+	<!-- <script src="assets/js/blockchain.js"></script> -->		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.5.2/ethers.umd.min.js" integrity="sha512-PtOcu3WZTldHT+VjAJdWV5ss+iGebEgc1h5olJuxUNPvKuC0VOZsk1UhNgQYi5oIyrNHhdIOw8WQMdZwBv1MyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- h3binning -->
+	<script src="assets/js/geojson2h3.js"></script>	<!-- geojson2h3 created using browserify  -->
+	<script src="https://unpkg.com/h3-js"></script>
+	<script src="https://unpkg.com/h3-js@3.7.2/dist/h3-js.umd.js"></script>
+
+	<!-- added 07-10-21 to show balances -->
+	<script src="assets/js/web3.min.js"></script>						<!-- Web3 -->
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./style2.css">		
+	<link rel="stylesheet" href="assets/css/multi-step/multistepstyle.css">	
+	<link rel="stylesheet" href="assets/css/vc-toggle-switch.css">	
+
+	<!-- 18-Sept-2022 Mapbox Libraries for H3 Binning -->	
+	<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@1.13.0-rc.4/dist/mapbox-gl.css" /> 
+	<link rel="stylesheet" href="/css/binningMap.css" />  <!-- css style used for binning Map  -->
+	<script src="https://unpkg.com/d3-fetch@2.0.0"></script>
+	<script src="https://unpkg.com/maplibre-gl@1.13.0-rc.4"></script>
+	<script src="https://unpkg.com/h3-js@3.7.0"></script>
+		
+	<!-- New Toggle Button 20-11-2022 -->
+	<script src="assets/js/buttonstrip.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/mainNewToggleButton.css">
+
+    <script type="text/javascript">
+	// 17-Nov-2022 
+    window.addEventListener('load', function () 
+    {
+		//initially hide binning map div
+		var y = document.getElementById("mapContainer");
+	    y.style.display = "none";
+
+	
+	
+		//13-October-2022...Toggle code	
+		var bs1 = new ButtonStrip({
+			id: 'buttonStrip1'
+		});
+		//Masking
+		bs1.addButton('Masking', true, 'click', function(){
+			console.log('Masking Option Chosen!');
+			$("#mapContainer").fadeOut("slow");		//Hide Map for binning in OL	 - lies outside the multi-step				
+			$("#Binning").fadeOut("slow");			//Hide Binning div 
+			$("#map").fadeIn("slow");				//Show Map for halo masking       - lies outside the multi-step
+			$("#Masking").fadeIn("slow");			//Show Masking div
+			maskingFlag = true;						//set the flag to masking, so encryption volume can know what to include		
+			map.updateSize();   					//to re render Openlayers map canvas
+			//mapContainer.updateSize();
+			//mapContainer.resize();
+			//window.setTimeout(()=>mapContainer.resize(), 500);
+
+			document.getElementById("thirdnextaction-button").disabled = true;	//ensure the user has to press the mask button to proceed	
+		});
+		//Binning
+		bs1.addButton('Binning', false, 'click', function(){
+			console.log('Binning Option Chosen');
+			$("#Masking").fadeOut("slow");      //Hide Halo masking div 
+			$("#map").fadeOut("slow");		    //Hide Map for halo masking - lies outside the multi-step
+			//$("#controlContainer").fadeIn("slow");  //https://stackoverflow.com/questions/14335501/show-hide-div-with-animation  and //http://jsfiddle.net/9jtd3/
+			$("#mapContainer").fadeIn("slow");	//Show Map for binning in OL	- lies outside the multi-step				
+			$("#Binning").fadeIn("slow");       //Show Binning div
+			maskingFlag = false;				//set the flag to false = binning, so encryption volume can know what to include
+			
+//			update_map_centre();	
+
+			//mapContainer.enabled = true;
+			//mapContainer.updateSize();	
+			//map.updateSize();					
+			//refreshMap(map);
+			//mapContainer.updateSize();
+			//mapContainer.resize();	
+			//this.map.resize()
+			//this.mapContainer.resize()
+			//window.setTimeout(()=>mapContainer.resize(), 500);	
+
+			//ensure the user does not need to press the mask button to proceed			
+		});
+		bs1.append('#ToggleContent');
+
+		var Binned_GeoJSON;
+
+		// 23-july 2021
+		//computepw(); genBut.addEventListener('click', computepw);		
+		//new passphrase generator
+		//console.log("Calling Passphrase initialiseArray() function: ");
+		initialiseArray();		
+		//populateform(8); //for now we just pass the number of words
+		//Important do not delete. Commenting this allows the passphrase to be generated only when users click generate (later on)
+//$$    genBut.addEventListener('click', populateform(8));
+		//hideBut.addEventListener('click', toggleHide);		
+		copyBut.addEventListener('click', copypw);	//copy the passphrase
+		copyHashBut.addEventListener('click', copyHash);
+		//01-July-2022 ..we may not need these two functions now. Instead just calling the loadInfo() function
+		//loadWeb3();
+		//loadBlockchainData();    
+		loadInfo();	
+		window.jsPDF = window.jspdf.jsPDF; // Now this line of code needs to be added for JSPDF //https://github.com/parallax/jsPDF/issues/3079	
+    
+   	//last check
+    if (typeof web3 !== 'undefined') {			
+			console.log('Web3 Detected! ' + web3.currentProvider.constructor.name)
+			window.web3 = new Web3(web3.currentProvider);
+		} else {
+			console.log('No Web3 Detected... using HTTP Provider')
+      alert("The notarisation feature at the end, will need Metamask Wallet installed and configured with an account!");
+		}
+		//just make sure, but we do not really need
+		web3.eth.defaultAccount = web3.eth.accounts[1]; //https://ethereum.stackexchange.com/questions/46054/calling-smart-contract-functions-from-app-js
+    
+    						
+	})	
+	</script>
+		
+	<!-- Main binning code -->	
+	<script type="module" src="/assets/js/H3binning.js">
+		
+	</script>  	
+	
+</head>
+
+<body id="body" class="is-preload">
+
+<!-- Header Start -->
+<header class="navigation">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg p-0">
+					<a class="navbar-brand" href="index.html">
+						<img src="images/logo_name.png" style="width:195px;height:50px;" alt="Logo">
+					</a>
+
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="ion-android-menu"></span>
+					</button>
+
+					<div class="collapse navbar-collapse ml-auto" id="navbarsExample09">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item @@home">
+								<a class="nav-link" href="index.html">Home</a>
+							</li>
+							<li class="nav-item dropdown @@portfolio">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guides <span class="ion-ios-arrow-down"></span></a>
+								<ul class="dropdown-menu" aria-labelledby="dropdown03">
+									<li><a class="dropdown-item @@portfolioFilter" href="safeguarding-guide.html">Safeguarding Guide</a></li>
+									<li><a class="dropdown-item @@portfolioSingle" href="verification-guide.html">Verification Guide</a></li>
+									
+								</ul>
+							</li>
+							<li class="nav-item @@service"><a class="nav-link" href="safeguard.html">Safeguard</a></li>
+							<li class="nav-item @@service"><a class="nav-link" href="verification.html">Verification</a></li>
+							
+							<li class="nav-item @@contact"><a class="nav-link" href="contact.html">Contact</a></li>
+							<li class="nav-item @@service"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header><!-- header close -->
+
+<section class="page-title bg-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+          <h1>Safeguard</h1>
+          <p>Mapsafe has a pipeline of geomasking, encryption, and notarisation to completely safeguard geospatial datasets.</p>
+		  
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
+
+<style>
+	.multi_step_form #msform #progressbar li {
+		list-style-type: none;
+		color: #99a2a8;
+		font-size: 9px;
+		width: calc(100%/4);  /* change to allow only 3 tabs */
+		float: left;
+		position: relative;
+		font: 500 13px/1 "Roboto", sans-serif;
+	}
+</style>
+
+<section class="service-about section">
+	<div class="container">
+		<div> <!-- class="row align-items-center text-center text-lg-left"> -->
+			<div> <!-- class="col-lg-6"> -->
+				<!--
+				<h2>Creative UX/UI Design Agency</h2>
+				<p class="mt-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate soluta corporis odit, optio cum! Accusantium numquam ab, natus excepturi architecto earum ipsa aliquam, illum, omnis rerum, eveniet officia nihil. Eum quod iure nulla, soluta architecto distinctio. Nesciunt odio ullam expedita, neque fugit maiores sunt perferendis placeat autem animi, nihil quis suscipit quibusdam ut reiciendis doloribus natus nemo id quod illum aut culpa perspiciatis consequuntur tempore? Facilis nam vitae iure quisquam eius harum consequatur sapiente assumenda, officia voluptas quas numquam placeat, alias molestias nisi laudantium nesciunt perspiciatis suscipit hic voluptate corporis id distinctio earum. Dolor reprehenderit fuga dolore officia adipisci neque!</p>
+				-->
+					<div class="inner">				
+					<!-- Main Code	-->
+					<div id="output"></div>
+						
+						<!--  Start Horizontal Flow Code End 14-Sep-2021 -->
+							      <!-- Start Multiform HTML https://www.geeksforgeeks.org/how-to-create-multi-step-progress-bar-using-bootstrap/ --> 
+						<section class="multi_step_form">  
+							<div id="msform"> 
+								<ul id="progressbar">
+									<li class="active">Load and Display</li>
+									<!-- <li>Display</li>	-->  
+									<li>Masking</li>  
+									<li>Encryption</li>	  
+									<li>Notarisation</li> 									  
+								</ul>
+									<!-- fieldsets -->									
+								<fieldset>
+									<div>
+										<!-- <span>Load the data you want to mask: </span><span class="icon fa-info-circle tooltip"> -->
+											<span class="tooltiptext">Load geospatial dataset in zipped shapefile format. 
+											<!-- <br> Instructions on creating a shapefile are included <a style="color: #0000FF;" href="https://www.youtube.com/watch?v=VO24SZ-jkNY" target="_blank">here</a>. -->
+											Sample <a style="color: #0000FF;" href="all_clusters_kamloops.zip">data</a> can be used.</span></span> <br><br>
+											<input type="file" id="sensitiveInput" action="all_clusters_kamloops.zip" onchange="return fileValidation(1)" style="padding-top:10px;">  
+											<!-- accept=".zip" -->
+									</div><br>
+																	
+									<div id="Displaying">																					
+											<button style="margin: 0.5rem 0 .5rem 0; width: 30%;" id="displayMap"  class="buttondss buttondss6" disabled>Display Map</button> 																					
+									</div>
+									
+									<!-- <button type="button" class="action-button previous previous_button">Back</button> secondnextaction-button -->
+									<button type="button" id="firstnextaction-button" class="next action-button" disabled>Continue</button>  
+								</fieldset>  
+								<fieldset>
+									
+									<div id= "MaskingOptions">
+											<div id="ToggleContent"></div>										
+										 
+										<div id="Masking">
+											<div> 
+												<span><strong>Masking</strong>: set the minimum and maximum distance in meters to move points: </span> <span class="icon fa-info-circle tooltip"><span class="tooltiptext"></span></span>
+												<br> 
+												<div class="slideContainer">
+													<input type="range" min="10" max="500" step="5" value="30" class="slider2" id="minDistInput">
+													<span>Minimum Distance: </span><span id="minDistValue">30</span> <span>meters</span>
+													<!-- Temporary renamed slider to slider2 as it was inheriting the slider css defined in this template-->
+													<br>
+													<input type="range" min="100" max="5000" step="5" value="300" class="slider2" id="maxDistInput">
+													<span>Maximum Distance: </span><span id="maxDistValue">300</span> <span>meters</span>
+												</div>
+											</div>
+											<!-- <button style="margin: 0.5rem 0 .5rem 0; width: 50%;" id="mask">Mask My XYZ!</button><br> -->											
+											<button id="mask" class="buttondss buttondss6 has-spinner"> Calculate Mask! </button> 
+											<!-- <button style="margin: 0.5rem 0 .5rem 0; width: 70%;" id="downloadMasked" disabled>Download Masked Data</button>
+											<button style="margin: 0.5rem 0 .5rem 0; width: 23%;" id="clear" disabled>Clear All</button> -->
+											<br>
+											<button style="margin: 0.5rem 0 .5rem 0; width: 23%;" id="downloadMasked" class="buttondss buttondss4" disabled>Download Masked Data</button>
+        									<button style="margin: 0.5rem 0 .5rem 0; width: 23%;" id="clear" class="buttondss buttondss4" disabled>Clear All</button>
+										</div>
+										
+										<div id="Binning" style="display: none;">
+											<div>
+												<span><strong>Binning</strong>: set the resolution for H3 binning, so the given point will be aggregated </span> <span class="icon fa-info-circle tooltip"><span class="tooltiptext"></span></span>
+												<br>
+												<div id="controlContainer"> 
+													<label for="pointCloudsWeight">Resolution</label>
+													<input id="pointCloudsWeight" type="range" min="0" max="1" step="any" value="0" />
+													<label for="bufferRadius">Buffer Radius</label>
+													<input id="bufferRadius" type="range" min="0" max="1" step="any" value="0" />										
+												</div>
+											</div>
+											<br>
+											
+											<button style="margin: 0.5rem 0 .5rem 0; width: 23%;" id="downloadBinned"  class="buttondss buttondss4" >Download Binned Data</button>
+											<button style="margin: 0.5rem 0 .5rem 0; width: 23%;" id="clear" class="buttondss buttondss4" disabled>Clear All</button>
+										</div>
+									</div>
+									
+									<button type="button" class="action-button previous previous_button">Back</button>
+									<button type="button" id="thirdnextaction-button" class="next action-button" disabled>Continue</button>  
+								</fieldset>									
+								<fieldset>
+									
+										<div id="encryptionOption">
+											<p> Select a passphrase to encrypt the masked data. Please store this passphrase safely. <br>
+											<span>											       
+											       <button style="margin: 0.5rem 0 .5rem 0; width: 25%;" id="genBut" onclick="populateform(15)" class="buttondss buttondss4">Generate passphrase</button> <button id=copyBut>📋</button>
+											</span>
+											<br>  
+											<code><output id=passphraseOutput>████████████████████████████</output></code>
+												
+											<div id="dwnEncrypted"> 
+												<!-- <button style="margin: 1rem 0 0 0; width: 100%;" id="downloadEncrypted" disabled>Download Encrypted Data</button></a> -->
+												<button style="margin: 0.5rem 0 .5rem 0; width: 30%;" id="downloadEncrypted" class="buttondss buttondss6" disabled>Encrypt and Download Dataset</button> 
+											</div>
+											
+										</div> 
+									<button type="button" class="action-button previous previous_button">Back</button>
+									<button type="button" id="fourthnextaction-button" class="next action-button" disabled>Continue</button> 
+								</fieldset>	
+								<fieldset>
+									<!-- <h3>Notarisation</h3> -->											
+									<p>The encrypted volume's digital signature (hash value) uniquely identifies it and proves its authenticity. <br>
+										This value is stored securely on the tamper-proof Blockchain.</p>										
+									<code><output id=hashOutput>████████████████████████████</output></code><button id=copyHashBut> 📋 </button></span>								
+								<br>
+									<div>										
+										<button style="margin: 0.5rem 0 .5rem 0; width: 30%;" id="mintButton" class="buttondss buttondss6" >Mint Hash on Blockchain</button> 
+									</div> 
+																		
+									<div>
+										<!-- <p id="message"></a> -->
+										<p id="TransAddress"></a> <!-- Transaction Link on Rinkerby  --> 
+									</div>			
+									<br>
+
+									<button type="button" class="action-button previous previous_button">Back</button>
+									<button type="button" a href="#" id="finish-button" class="action-button" disabled>Finish</button>
+								</fieldset>										 									
+							</div>  <!-- end div msform -->
+						</section>							
+						<!-- End Horizontal Flow Code -->
+						
+						<!-- Donut Masking -->
+						<article id="dm">
+
+							<div style="display: none;" id="infoDiv">
+
+								<div class="slideContainer">
+									<input type="range" min="50" max="10000" step="50" value="500" class="slider" id="bandwidth">
+									<span>Maximum Cluster Distance: <span id="sliderValue"></span> meters</span> <span class="icon fa-info-circle tooltip"><span class="tooltiptext">This value adjusts the distance used by the DBSCAN algorithm to detect clusters. DBSCAN is both complicated and <i>very</i> sensitive to this distance value, so don't use this to try and detect real, meaningful clusters in your data. Instead, play around with the value, see how it affects cluster detection until you find a value that you think looks reasonable, and use it for <i>exploring</i> how masking changes the distribution of your data and some of the <i>potential</i> clusters within it.</span></span>
+								</div>
+								<br>
+								<strong id="clusterReport">Number of Clusters Detected</strong> <span class="icon fa-info-circle tooltip"><span class="tooltiptext">Points that form clusters are represented in bold on the map. Ideally the number and location of clusters before and after masking are similar.</span></span><br>
+								<span id="beforeMasking">Before Masking: </span><br>
+								<span id="afterMasking">After Masking: </span><br>
+								<span id="addLoss">Clusters Lost or Added: </span><br>
+								<br>
+							</div>
+							<br>
+							<!-- <input id="clickMe" type="button" value="Show Binning Map" onclick="displayMap3();" /> -->
+							<!-- Original OpenLayers Map use for masking -->
+							<div id="map" style="height:50vh;"></div>
+							<!--  OpenLayers Map Canvas -->
+							<div id="mapContainer" style="height:50vh; width: 58vw; "> </div> <!-- display: none; -->
+							<br>
+							<!-- <input id="btnToggleMap" type="button" value="Show Map 2" /> -->
+						</article>	
+
+						<script>
+							//Set a bunch of variables based on user input
+							var bandwidth = document.getElementById("bandwidth");
+							var output = document.getElementById("sliderValue");
+							var minDistInput = document.getElementById("minDistInput");
+							var minDistValue = document.getElementById("minDistValue");
+							var maxDistInput = document.getElementById("maxDistInput");
+							var maxDistValue = document.getElementById("maxDistValue");
+
+							//This section just edits the values so that the sliders work
+							clustersEnabled = false;
+							output.innerHTML = bandwidth.value;
+							bandwidth.oninput = function() {
+								output.innerHTML = this.value;
+							}
+							minDistInput.oninput = function() {
+								minDistValue.innerHTML = this.value;
+							}
+							maxDistInput.oninput = function() {
+								maxDistValue.innerHTML = this.value;
+							}
+
+							//Enables the cluster detection tools
+							$("#enableInfoLoss").click(function(){
+								clustersEnabled = true;
+								$("#infoDiv").show();
+								$(".slideContainer").show();
+							});
+
+							//The Map!
+							var map = new ol.Map({
+								target: 'map',
+								layers: [
+									new ol.layer.Tile({
+										source: new ol.source.XYZ({
+											url:'https://basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
+										})
+									})
+								],
+								view: new ol.View({
+									center: ol.proj.fromLonLat([-100, 45]),
+									zoom: 3,
+									maxZoom: 13
+								})
+							});
+
+							//Download button, defines the options for shpwrite and then triggers the download. Also loads the citation page upon click
+							$("#downloadMasked").on("click", function () {
+								//$("#citation").load();
+								var options = {
+									folder: 'MaskedData',
+									types: {
+										point: 'MaskedPoints',
+									}
+								}
+								console.log("Downloading Masked Data");
+								//Chrome blocks the download - so the following function only works in Mozilla
+								//shpwrite.download(masked.reprojected, options);
+								//as an alternative, we use most of the code from the GenerateZipOfAll() function.          
+								//delete masked.data.layer;
+								var result = saveShapeFile(masked.reprojected,"masked"); //GenerateZipOfAll();
+							
+								//for downloading geojson
+								var downloadGeoJSON = false;
+								if(downloadGeoJSON)
+								{      
+									console.log("Downloading GeoJSON");
+									//console.log(JSON.stringify(masked.reprojected));
+									console.log("Layer deletion started");
+									delete masked.data.layer;
+									saveJson(masked.data, "masked.geojson");
+									//console.log("masked.data " + JSON.parse(masked.data))									
+								}
+							});
+
+							//Trigger functions based on user input from buttons
+							$("#sensitiveInput").change(function(){
+								console.log('sensitive.data: ' + sensitive.data)	//console.log('sensitiveMed.data: ' + sensitiveMed.data)
+								loadShapeFile("sensitiveInput", "sensitiveTag", "sensitive") //,
+									//loadShapeFile("sensitiveInput", "sensitiveTag", "sensitiveMed")
+								console.log('shapeFile Loaded ')
+								console.log('sensitive.data: ' + sensitive.data)	//console.log('sensitiveMed.data: ' + sensitiveMed.data)
+							});
+							$("#boundaryInput").change(function(){
+								loadShapeFile("boundaryInput", "boundaryTag", "boundary")}
+							);
+							$("#displayMap").click(function(){
+								console.log('Sensitive.data: ' + sensitive.data);		
+								var startTime = new Date();
+								console.log("Began Map Display: ");
+								document.getElementById("firstnextaction-button").disabled = false;	
+								toMap(sensitive.data, sensitive.style)
+								//, 
+								//toMap(boundary.data, boundary.style)
+								}
+								//console.log('Hello')
+								//document.getElementById("secondnextaction-button").disabled = false;
+								//var endTime = new Date();
+								//executionTime = ((endTime - startTime) / 1000);
+								//console.log("Map Display complete. Exceution Time: " + executionTime);
+							);
+																			
+							$("#mask").click(function(){
+								document.getElementById("thirdnextaction-button").disabled = false;	
+								document.getElementById("downloadMasked").disabled = false;	
+								document.getElementById("clear").disabled = false;	
+								
+								var startTime = new Date();
+								console.log("Began Map Masking: ");
+								console.log('sensitive.data: ' + sensitive.data);			
+								console.log('sensitiveMed.data: ' + sensitiveMed.data);					
+								xyz.displace("sensitive", "masked"), //"sensitiveMed", "maskedMed","sensitiveCoarse", "maskedCoarse"),									
+										toMap(sensitive.data, sensitive.style),
+										toMap(masked.data, masked.style), //masked
+//$$$											toMap(maskedMore.data, maskedMore.style),
+										toMap(sensitiveClusters.cluster, sensitiveClusters.style),
+										toMap(maskedClusters.cluster, maskedClusters.style)							
+								endTime = new Date();
+								executionTime = ((endTime - startTime) / 1000);
+								console.log("Map Masking complete. Exceution Time: " + executionTime);
+								}
+							);
+							$("#clear").click(function(){
+								location.reload()}
+							);
+
+							//11-10-2021. This function is not used, the encrypted data save link is created automatically. 
+							//But should later work
+							$("#downloadEncrypted").on("click", function () {
+								//console.log("Encryption: ");											
+								console.log("Multi Level encryption: Started ");
+								var startTimeENC = new Date();
+
+								//16-10-2021..document encryption ..see previous version of this file for code
+								console.log("Map Encryption: ");
+								console.log("minDistInput: " + document.getElementById("minDistInput").value); 		//console.log("minDistValue: " + minDistValue);
+								console.log("maxDistInput: " + document.getElementById("maxDistInput").value);		//console.log("maxDistValue: " + maxDistValue);
+								//console.log("randDist: " + randDist);	console.log("randAngle: " + randAngle);
+
+								var mapfilename = "filename", zip_file_content = '';
+								var maskedData = JSON.stringify(masked.reprojected);
+								//console.log("zip content "+ maskedData.substring(0,200)); // we can see some data
+
+								//Masked data .... add the geojson file to the zip object
+								var maskedData_string = masked.data; //JSON.stringify(masked.data); 
+								//console.log("Console JSON.stringify (masked.reprojected)" + maskedData_string);
+								//var plaintextbytesA = convertStringToArrayBuffer(maskedData_string); /*new Uint8Array(maskedData);*/ 
+								//console.log("plaintextbytes: " + plaintextbytesA);
+								var maskedMoreData_string = masked.data; //JSON.stringify(maskedMore.data); 
+								//console.log("Console JSON.stringify (maskedMedData_string)" + maskedMedData_string);
+
+								//read the above url link (line 385) for more useful functions that can be implemented, like the one below
+								//const text = await new Response(blob).text();
+
+								// 14-10-2021. No longer need masking for fine level, as we only need two levsl. So this further level is not needed.
+								//original zipper function..lets not change the contents of this function.. lets preserve this function
+				//											zipper(maskedData_string); //, maskedData_string, maskedData_string); //last two are dummy values have to offest the values in the later two parameters
+								//new function...intended just to save
+								multiLevelEncrypt(maskedData_string, maskedMoreData_string, startTimeENC); //zip_callEncryption(maskedData_string, maskedMedData_string);
+								
+								document.getElementById("fourthnextaction-button").disabled = false;	
+							});
+
+							//added 02-oct-2021
+							$("#encryptedInput").change(function(){
+								console.log("showZippedFileContents()");
+								showZippedFileContents("encryptedInput")}
+							);
+							$('#mintButton').click(function(){
+								minting()}
+							);
+							//09-11-2021..print receipt
+							$("#print-btn").click(function(){									
+								console.log("Console: print receipt here 23");
+								saveReceipt()
+							});
+
+							//23-10-2021...document encyption option: see previous versions of this file for this code
+						</script>
+					</article>
+					
+					<!-- Tags for injecting geoJSON data -->
+					<script id="sensitiveTag"></script>
+					<script id="boundaryTag"></script>
+				</div>
+			</div>
+			<!--
+			<div class="col-lg-6">
+				<img class="img-fluid" src="images/company/company-group-pic.jpg">
+			</div> -->
+		</div>
+	</div>
+</section>
+
+<!-- footer Start -->
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+						<!-- <li><a href="about.html">About Us</a></li> -->
+						<li><a href="contact.html">Contact us</a></li>
+						<!-- <li><a href="service.html">How it works</a></li> -->
+						<li><a href="faq.html">FAQ</a></li>
+						<li><a href="disclaimer.html">Disclaimer</a></li>
+					</ul>
+				</div>
+				<p class="copyright mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; Designed & Developed by <a
+						href="http://www.themefisher.com">Themefisher</a>. All rights reserved.
+					<br> Get More <a href="https://themefisher.com/free-bootstrap-templates/">Free Bootstrap
+						Templates</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!--Scroll to top-->
+<div id="scroll-to-top" class="scroll-to-top">
+	<span class="icon ion-ios-arrow-up"></span>
+</div>
+   
+		<!-- Scripts -->
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/main2.js"></script>   <!-- second HTML5 Template -->
+		<!-- new multistep -- 15 sept 21 -->			
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+		<!-- Do not include this in Geonode- It has its own version of Popper.js and conflicts with their login popup.-->>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>  
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/js/intlTelInput.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js'></script>
+		<script src="assets/js/multistep.js"></script>
+		<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'></script> -->
+		<!-- 08-Oct-2021, load this at the end ...-->
+		<script src="assets/js/blockchain.js"></script>
+		<!-- <script src="assets/js/index.js"></script> -->
+    </body>
+</html>

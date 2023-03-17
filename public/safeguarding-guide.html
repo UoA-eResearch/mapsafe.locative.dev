@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Mapsafe | A Complete tool for Geospatial Data Sovereignty</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Creative Agency Bootstrap Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Airspace Template v1.0">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- Ionic Icon Css -->
+  <link rel="stylesheet" href="plugins/Ionicons/css/ionicons.min.css">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="plugins/animate-css/animate.css">
+  <!-- Magnify Popup -->
+  <link rel="stylesheet" href="plugins/magnific-popup/magnific-popup.css">
+  <!-- Slick CSS -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- GIF Player -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+  <link rel="stylesheet" href="assets/css/gifplayer.css" />
+  <script src="assets/js/jquery.gifplayer.js"></script>
+
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+
+</head>
+
+<body id="body">
+
+<!-- Header Start -->
+<header class="navigation">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg p-0">
+					<a class="navbar-brand" href="index.html">
+						<img src="images/logo_name.png" style="width:195px;height:50px;" alt="Logo">
+					</a>
+
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="ion-android-menu"></span>
+					</button>
+
+					<div class="collapse navbar-collapse ml-auto" id="navbarsExample09">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item @@home">
+								<a class="nav-link" href="index.html">Home</a>
+							</li>
+							<li class="nav-item dropdown @@portfolio">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guides <span class="ion-ios-arrow-down"></span></a>
+								<ul class="dropdown-menu" aria-labelledby="dropdown03">
+									<li><a class="dropdown-item @@portfolioFilter" href="safeguarding-guide.html">Safeguarding Guide</a></li>
+									<li><a class="dropdown-item @@portfolioSingle" href="verification-guide.html">Verification Guide</a></li>
+									
+								</ul>
+							</li>
+							<li class="nav-item @@service"><a class="nav-link" href="safeguard.html">Safeguard</a></li>
+							<li class="nav-item @@service"><a class="nav-link" href="verification.html">Verification</a></li>
+							
+							<li class="nav-item @@contact"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item @@service"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header><!-- header close -->
+
+<section class="portfolio-single-page section-sm">
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md-12">
+        <div class="project-content mt-50">
+          <h2 class="mb-3">Safeguarding Guide</h2>
+
+          <p> Mapsafe uses geomasking, encryption, and notarisation to safeguard geospatial datasets. 
+          Each of these techniques is explained below. </p>
+
+          <h3>What is geographic masking?</h3>
+					<p>Geographic masks are a set of techniques that alter the location of points in a map to protect privacy without overly affecting any spatial patterns. In other words, <i>geographic masks allow researchers to publish useful maps of approximate locations, without exposing sensitive data or violating anyone's privacy</i>. Of course, this is a trade-off: with more masking comes more privacy, but this privacy comes as the cost of <i>information loss</i>. If we apply too much masking to our data, the end result may not resemble the original data whatsoever. While the balance between privacy and information loss can be tricky, its best to air on the side of privacy.</p>
+				
+					<p> Mapsafe uses the Maskmy.XYZ tool for masking. The tool performs donut masking, which is a funny term for a simple concept: moving each point randomly between a minimum and maximum distance. 
+					A more comprehensive explnation about the masking feature can be found on the website of the <a href="https://maskmy.xyz/">Maskmy.XYZ tool</a> </p>
+
+					<h3>What is encryption?</h3>
+					<p>Encryption uses a passphrase to transform the original data into a form unrecoverable by an adversary. A 15 term passphrase is randomly generated and used to encrypt the masked dataset data which is later required to recover the original data.  
+					The masked dataset is encrypted in the browser memory at three levels. </p>
+          
+          <style>
+            ul.a {
+              list-style-type: circle;
+            }
+
+            ul.b {
+              list-style-type: square;
+            }
+
+            ol.c {
+              list-style-type: upper-roman;
+            }
+
+            ol.d {
+              list-style-type: lower-alpha;
+            }
+            .customIndent {
+              margin-left: -15px;
+            }
+            ul {
+              padding-left: 30px;
+            }
+          </style>
+
+          <ul class="a">
+            <li>The full 15 term passphrase is used to encrypt the original dataset,</li>
+            <li>10 terms of the full passphrase to encrypt the masked dataset, and </li>
+            <li>5 terms of the full passphrase to encrypt the `more' masked dataset.</li>
+          </ul>
+					
+          <p>These passphrases are required to later decrypt to each of the three levels. </p>
+          <p>Mapsafe uses the encryption facility provided by the Web.Cryto toolkit whiich is in-built within the browser.  </p>
+
+					<h3>What is notarisation?</h3>
+					<p> Notarisation is a method used to create a digital signature of data. Usually this is done via a cryptographic hash function that generates a 64 character string. Even the slightest change in the data creates a completely different hash value. 
+					The hash value of the encrypted geospatial dataset is stored as a public record on a tamper-proof facility. </p>
+          <p>Mapsafe stores (mints) the hash value of the encrypted file on the Ethereum Blockchain under the user's blockchain account. 
+          The user's account is the one within the Metamask Wallet. 
+          Once the has value is minted, a url link to the Ethereum address where the data is sttored as a public record is presented.</p>
+					
+          <h4>How to setup for Notarisation?</h4>
+          <p>All data should be notarised on the Ethereum mainnet. However, for testing one can use the public Ethereum testnet, such as Goerli.
+          To mint data on ether networks, you need to carry out these tasks.
+          
+          <ul class="a">
+            <li>First, visit  <a href="https://vanity-eth.tk/" target="_blank">Vanity-ETH </a> to generate an Ethereum vanity address and a private key.</li>          
+            <li>Second, using your generated Ethereum address, request Ether from this <a href="https://goerlifaucet.com" target="_blank">Goerli Faucet</a></li>          
+            <li>Third, install the <a href="https://metamask.io/" target="_blank">metamask wallet</a>, and connect it to the Goerli testnet or mainnet.</li>
+            <li>If using the testnet, you can check the Ether balance and all minted data on your address, at the 
+            <a href="https://goerli.etherscan.io/" target="_blank">Goerli etherscan</a> </li>          
+          </ul>
+          <br>
+
+          <h3>How do I load data?</h3>
+					<p>First, make sure the data you want to mask is in a shapefile format. Mapsafe can only load zipped shapefiles. Once you have the zip file, just click the 'Choose File' button in Upload tab and select the zipped shapefile from your file system, as shown in the above video.</p>
+					
+					<h3>How do I use the mapsafe tool?</h3>
+					<p>Watch this video to learn how to safeguard your data, from start to finish!</p>
+					
+          <!-- <h2>How do I use the masking tool?</h2>
+					<p>Watch this GIF to learn how to mask your data, from start to finish!</p>
+					<img class="gifplayer" src="images/safeguarding.gif" style="box-shadow: 2px 2px 2px 2px #ccc;" width="100%">
+					<script>$('.gifplayer').gifplayer();</script>
+					<p></p> -->
+         
+
+          <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="828"
+            height="448"         
+            data-setup="{}"
+          >
+            <source src="images/safeguard.mp4" type="video/mp4" />
+            <source src="MY_VIDEO.webm" type="video/webm" />
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+              >
+            </p>
+          </video>
+
+          <!-- <a href="portfolio.html" class="btn btn-view-works">View GIF</a> -->
+
+					
+          <!--
+          <div class="my-4">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LKFuXETZUsI?rel=0" allowfullscreen></iframe>
+            </div>
+          </div>
+          -->
+         
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- footer Start -->
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+						<!-- <li><a href="about.html">About Us</a></li> -->
+						<li><a href="contact.html">Contact us</a></li>
+						<!-- <li><a href="service.html">How it works</a></li> -->
+						<li><a href="faq.html">FAQ</a></li>
+						<li><a href="disclaimer.html">Disclaimer</a></li>
+					</ul>
+				</div>
+				<p class="copyright mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; Designed & Developed by <a
+						href="http://www.themefisher.com">Themefisher</a>. All rights reserved.
+					<br> Get More <a href="https://themefisher.com/free-bootstrap-templates/">Free Bootstrap
+						Templates</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!--Scroll to top-->
+<div id="scroll-to-top" class="scroll-to-top">
+	<span class="icon ion-ios-arrow-up"></span>
+</div>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- slick Carousel -->
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- filter -->
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/SyoTimer/jquery.syotimer.min.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+    <script src="plugins/google-map/map.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+
+    </body>
+
+    </html>

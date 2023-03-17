@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  ================================================== -->
+  <meta charset="utf-8">
+  <title>Mapsafe | A Complete tool for Geospatial Data Sovereignty</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Creative Agency Bootstrap Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Airspace Template v1.0">
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css">
+  <!-- Ionic Icon Css -->
+  <link rel="stylesheet" href="plugins/Ionicons/css/ionicons.min.css">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="plugins/animate-css/animate.css">
+  <!-- Magnify Popup -->
+  <link rel="stylesheet" href="plugins/magnific-popup/magnific-popup.css">
+  <!-- Slick CSS -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <link href="https://vjs.zencdn.net/8.0.4/video-js.css" rel="stylesheet" />
+
+</head>
+
+<body id="body">
+
+<!-- Header Start -->
+<header class="navigation">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<nav class="navbar navbar-expand-lg p-0">
+					<a class="navbar-brand" href="index.html">
+						<img src="images/logo_name.png" style="width:195px;height:50px;" alt="Logo">
+					</a>
+
+					<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="ion-android-menu"></span>
+					</button>
+
+					<div class="collapse navbar-collapse ml-auto" id="navbarsExample09">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item @@home">
+								<a class="nav-link" href="index.html">Home</a>
+							</li>
+							<li class="nav-item dropdown @@portfolio">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Guides <span class="ion-ios-arrow-down"></span></a>
+								<ul class="dropdown-menu" aria-labelledby="dropdown03">
+									<li><a class="dropdown-item @@portfolioFilter" href="safeguarding-guide.html">Safeguarding Guide</a></li>
+									<li><a class="dropdown-item @@portfolioSingle" href="verification-guide.html">Verification Guide</a></li>
+									
+								</ul>
+							</li>
+							<li class="nav-item @@service"><a class="nav-link" href="safeguard.html">Safeguard</a></li>
+							<li class="nav-item @@service"><a class="nav-link" href="verification.html">Verification</a></li>
+							
+							<li class="nav-item @@contact"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item @@service"><a class="nav-link" href="disclaimer.html">Disclaimer</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</header><!-- header close -->
+
+<section class="portfolio-single-page section-sm">
+  <div class="container">
+    
+     <div class="row">
+      <div class="col-md-12">
+        <div class="project-content mt-50">
+          <h2 class="mb-3">Verification Guide</h2>
+
+          <p> The verification process involves proving that the encrypted volume is the same as when it was safeguarded. 
+          This is achieved by comparing the digital signatures of the encrypted volume: the current one against that stored on the Blockchain. 
+          Once they match, the user can be confident that the encrypted volume has not been altered and can proceed to decrypt the volume.
+          These processes are explained below. </p>
+          
+					<h3>The Verification Process</h3>
+					<p>First, a hash value of the encrypted volume is generated. This value is then compared with that stored on the Blockchain under the users account. 
+					The masked dataset is encrypted in the browser memory at three levels. If both hash values match, it can be assured that the encrypted volume is the same as when it was safeguarded.</p>
+          
+          <h3>The Decryption Process</h3>
+					<p>The Decryption process uses a passphrase to transform the encrypted data into a usab;e form. This is similar but opposite to the encryption process.
+					The masked dataset is decrypted in the browser memory at three levels. </p>
+
+          <style>
+            ul.a {
+              list-style-type: circle;
+            }
+
+            ul.b {
+              list-style-type: square;
+            }
+
+            ol.c {
+              list-style-type: upper-roman;
+            }
+
+            ol.d {
+              list-style-type: lower-alpha;
+            }
+            .customIndent {
+              margin-left: -15px;
+            }
+            ul {
+              padding-left: 30px;
+            }
+          </style>
+
+          <ul class="a">
+            <li>The full 15 term passphrase is used to decrypt to the original dataset,</li>
+            <li>10 terms of the full passphrase to decrypt the masked dataset, and </li>
+            <li>5 terms of the full passphrase to decrypt the `more' masked dataset.</li>
+          </ul>
+					          
+          <p>Mapsafe uses the encryption-decryption facility provided by the Web.Cryto toolkit whiich is in-built within the browser.  </p>
+
+					
+					<h3>How do I use the verification facility?</h3>
+					<p>Watch this GIF to learn how to verify your data, from start to finish!</p>
+					
+          <!--
+          <img class="gifplayer" src="images/safeguarding.gif" style="box-shadow: 2px 2px 2px 2px #ccc;" width="100%">
+					<script>$('.gifplayer').gifplayer();</script>
+					<p></p> 
+          -->
+
+          <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="825"
+            height="448"         
+            data-setup="{}"
+          >
+            <source src="images/verification.mp4" type="video/mp4" />
+            <source src="MY_VIDEO.webm" type="video/webm" />
+            <p class="vjs-no-js">
+              To view this video please enable JavaScript, and consider upgrading to a
+              web browser that
+              <a href="https://videojs.com/html5-video-support/" target="_blank"
+                >supports HTML5 video</a
+              >
+            </p>
+          </video>
+
+          <!-- <a href="portfolio.html" class="btn btn-view-works">View GIF</a> -->
+
+					
+          <!--
+          <div class="my-4">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LKFuXETZUsI?rel=0" allowfullscreen></iframe>
+            </div>
+          </div>
+          -->
+         
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!--
+<section class="related-projects section-sm bg-gray">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="text-center">
+          <h2>Related Other Projects</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mt-5">
+        <div class="content">
+          <img class="img-fluid" src="images/portfolio/portfolio-big-2.jpg">
+          <div class="content mt-4">
+            <h4>Dribbble Redesign</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas recusandae, dignissimos culpa quam
+              debitis quibusdam magni rem quis, cum nesciunt?</p>
+            <a href="portfolio-single.html" class="btn btn-small">View Case Study</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mt-5">
+        <div class="content">
+          <img class="img-fluid" src="images/portfolio/portfolio-big-3.jpg">
+          <div class="content mt-4">
+            <h4>Dribbble Redesign</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas recusandae, dignissimos culpa quam
+              debitis quibusdam magni rem quis, cum nesciunt?</p>
+            <a href="portfolio-single.html" class="btn btn-small">View Case Study</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- footer Start -->
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="footer-manu">
+					<ul>
+						<!-- <li><a href="about.html">About Us</a></li> -->
+						<li><a href="contact.html">Contact us</a></li>
+						<!-- <li><a href="service.html">How it works</a></li> -->
+						<li><a href="faq.html">FAQ</a></li>
+						<li><a href="disclaimer.html">Disclaimer</a></li>
+					</ul>
+				</div>
+				<p class="copyright mb-0">Copyright <script>document.write(new Date().getFullYear())</script> &copy; Designed & Developed by <a
+						href="http://www.themefisher.com">Themefisher</a>. All rights reserved.
+					<br> Get More <a href="https://themefisher.com/free-bootstrap-templates/">Free Bootstrap
+						Templates</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<!--Scroll to top-->
+<div id="scroll-to-top" class="scroll-to-top">
+	<span class="icon ion-ios-arrow-up"></span>
+</div>
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+
+    <!-- Main jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="plugins/bootstrap/bootstrap.min.js"></script>
+    <!-- slick Carousel -->
+    <script src="plugins/slick/slick.min.js"></script>
+    <script src="plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- filter -->
+    <script src="plugins/shuffle/shuffle.min.js"></script>
+    <script src="plugins/SyoTimer/jquery.syotimer.min.js"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU&libraries=places"></script>
+    <script src="plugins/google-map/map.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script src="https://vjs.zencdn.net/8.0.4/video.min.js"></script>
+
+    </body>
+
+    </html>
